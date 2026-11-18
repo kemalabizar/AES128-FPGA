@@ -57,7 +57,7 @@ architecture RTL of AES128_SubBytes is
 	);
 begin
 	Y <= Table (
-	to_integer(signed(X(7 downto 4))),
-	to_integer(signed(X(3 downto 0)))
+	to_integer(unsigned(X(7 downto 4))),
+	to_integer(unsigned(X(3 downto 0)))
 	);
 end architecture RTL;
