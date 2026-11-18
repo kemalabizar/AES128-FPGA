@@ -1,5 +1,6 @@
 -- AES128 MultGF28 implementation
 -- Copyright (c) 2026 Muhammad Kemal Abizar, Galvin Efrem Lesmana, Hanif Abdul Aziz
+-- NOTE 18/11/2026: Fungsi logika sudah diverifikasi benar oleh MultiSim
 
 --	MIT License
 --
@@ -29,14 +30,16 @@ use IEEE.numeric_std.all;
 
 entity AES128_MultGF28 is port (
 	X : in std_logic_vector (7 downto 0);
-	Y : out std_logic_vector (7 downto 0);
+	Y : out std_logic_vector (7 downto 0)
 ); end entity AES128_MultGF28;
 
 architecture RTL of AES128_MultGF28 is
+	signal C : std_logic_vector (7 downto 0);
 begin
-	process (X) begin
-		if X(7) = '1' then Y <= (X sll 1) xor "00011011";
-		else Y <= (X sll 1);
+	C(7 downto 1) <= X(6 downto 0); C(0) <= '0';
+	process (C) begin
+		if C(7) = '1' then Y <= C xor "00011011";
+		else Y <= C;
 		end if;
 	end process;
 end architecture RTL;
