@@ -1,6 +1,6 @@
--- AES128 MixColumns implementation
+-- AES128 MixColumns implementation (version 0.1)
 -- Copyright (c) 2026 Muhammad Kemal Abizar, Galvin Efrem Lesmana, Hanif Abdul Aziz
--- Per column operation mode, will be implemented as sequential circuit inside the main thing
+-- NOTE 19/11/2026: Cara kerja program terverifikasi dan sudah diuji benar oleh MultiSim
 
 --	MIT License
 --
@@ -29,34 +29,20 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
 entity AES128_MixColumns is port (
-	X : in std_logic_vector (31 downto 0);
-	Y : out std_logic_vector (31 downto 0)
+	X : in std_logic_vector (127 downto 0);
+	Y : out std_logic_vector (127 downto 0)
 ); end entity AES128_MixColumns;
 
 architecture RTL of AES128_MixColumns is
-	component AES128_MultGF28 port (
-		X : in std_logic_vector (7 downto 0);
-		Y : out std_logic_vector (7 downto 0);
-	); end component AES128_MultGF28;
-	signal C0 : std_logic_vector (7 downto 0);
-	signal C1 : std_logic_vector (7 downto 0);
-	signal C2 : std_logic_vector (7 downto 0);
-	signal C3 : std_logic_vector (7 downto 0);
-	signal C4 : std_logic_vector (7 downto 0);
-	signal C5 : std_logic_vector (7 downto 0);
-	signal C6 : std_logic_vector (7 downto 0);
-	signal C7 : std_logic_vector (7 downto 0);
+	component AES128_PerColumnMix port (
+		X : in std_logic_vector (31 downto 0);
+		Y : out std_logic_vector (31 downto 0)
+	); end component AES128_PerColumnMix;
+	signal C : std_logic_vector (127 downto 0);
 begin
-	MultGF28_0 : AES128_MultGF28 port map (X => X(31 downto 24), Y => C0);
-	MultGF28_0 : AES128_MultGF28 port map (X => X(23 downto 16), Y => C1);
-	MultGF28_0 : AES128_MultGF28 port map (X => X(23 downto 16), Y => C2);
-	MultGF28_0 : AES128_MultGF28 port map (X => X(15 downto 8), Y => C3);
-	MultGF28_0 : AES128_MultGF28 port map (X => X(15 downto 8), Y => C4);
-	MultGF28_0 : AES128_MultGF28 port map (X => X(7 downto 0), Y => C5);
-	MultGF28_0 : AES128_MultGF28 port map (X => X(7 downto 0), Y => C6);
-	MultGF28_0 : AES128_MultGF28 port map (X => X(31 downto 24), Y => C7);
-	Y (31 downto 24)	<=	C0 xor C1 xor X(23 downto 16) xor X(15 downto 8) xor X(7 downto 0);
-	Y (23 downto 16)	<=	C2 xor C3 xor X(31 downto 24) xor X(23 downto 16) xor X(15 downto 8);
-	Y (15 downto 8)	<=	C4 xor C5 xor X(31 downto 24) xor X(23 downto 16) xor X(7 downto 0);
-	Y (7 downto 0)		<=	C6 xor C7 xor X(31 downto 24) xor X(23 downto 16) xor X(15 downto 8);
+	ColumnProcess_0 : AES128_PerColumnMix port map (X => X(127 downto 96), Y => C(127 downto 96));
+	ColumnProcess_1 : AES128_PerColumnMix port map (X => X(95 downto 64), Y => C(95 downto 64));
+	ColumnProcess_2 : AES128_PerColumnMix port map (X => X(63 downto 32), Y => C(63 downto 32));
+	ColumnProcess_3 : AES128_PerColumnMix port map (X => X(31 downto 0), Y => C(31 downto 0));
+	Y <= C;
 end architecture RTL;

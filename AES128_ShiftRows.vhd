@@ -1,6 +1,6 @@
--- AES128 ShiftRows implementation
+-- AES128 ShiftRows implementation (version 0.1)
 -- Copyright (c) 2026 Muhammad Kemal Abizar, Galvin Efrem Lesmana, Hanif Abdul Aziz
--- NOTE 18/11/2026: Fungsi logika sudah diverifikasi benar oleh MultiSim
+-- NOTE 19/11/2026: Cara kerja program terverifikasi dan sudah diuji benar oleh MultiSim
 
 --	MIT License
 --

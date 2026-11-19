@@ -1,8 +1,9 @@
--- AES128 SubBytes implementation
+-- AES128 SubBytes implementation (version 0.1)
 -- Copyright (c) 2026 Muhammad Kemal Abizar, Galvin Efrem Lesmana, Hanif Abdul Aziz
 -- NOTE 10/11/2026: Belum dicek lagi kesesuaian SBox secara manual
 -- NOTE 17/11/2026: Revisi dari "when A = " dan "when B =" menjadi "when" saja, masih belum dites ulang
 -- NOTE 18/11/2026: Rebuilt besar-besaran, ga pake case, ganti jadi array aja (verdammten scheisse)
+-- NOTE 19/11/2026: Cara kerja program terverifikasi parsial oleh MultiSim
 
 --	MIT License
 --
