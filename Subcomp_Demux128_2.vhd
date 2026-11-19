@@ -27,14 +27,14 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity Subcomp_Mux128_2 is port (
+entity Subcomp_Demux128_2 is port (
 	D	: in std_logic_vector (127 downto 0);
 	Q0	: out std_logic_vector (127 downto 0);
 	Q1	: out std_logic_vector (127 downto 0);
 	SEL : in std_logic
-); end entity Subcomp_Mux128_2;
+); end entity Subcomp_Demux128_2;
 
-architecture RTL of Subcomp_Mux128_2 is
+architecture RTL of Subcomp_Demux128_2 is
 begin
 	process (SEL) begin
 		if SEL = '1' then
