@@ -1,4 +1,4 @@
--- AES128 MixColumns implementation (version 0.1)
+-- AES128 MixColumns implementation (version 0.2)
 -- Copyright (c) 2026 Muhammad Kemal Abizar, Galvin Efrem Lesmana, Hanif Abdul Aziz
 -- NOTE 19/11/2026: Cara kerja program terverifikasi dan sudah diuji benar oleh MultiSim
 
