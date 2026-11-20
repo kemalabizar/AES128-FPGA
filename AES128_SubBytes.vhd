@@ -1,4 +1,4 @@
--- AES128 SubBytes implementation (version 0.2)
+-- AES128 SubBytes implementation (version 0.3)
 -- Copyright (c) 2026 Muhammad Kemal Abizar, Galvin Efrem Lesmana, Hanif Abdul Aziz
 -- NOTE 10/11/2026: Belum dicek lagi kesesuaian SBox secara manual
 -- NOTE 17/11/2026: Revisi dari "when A = " dan "when B =" menjadi "when" saja, masih belum dites ulang

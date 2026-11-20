@@ -1,4 +1,4 @@
--- AES128 SBox implementation (version 0.2)
+-- AES128 SBox implementation (version 0.3)
 -- Copyright (c) 2026 Muhammad Kemal Abizar, Galvin Efrem Lesmana, Hanif Abdul Aziz
 
 --	MIT License

@@ -1,4 +1,4 @@
--- Subcomponent Multiplexer-2 128-bit (version 0.2)
+-- Subcomponent Multiplexer-2 128-bit (version 0.3)
 -- Copyright (c) 2026 Muhammad Kemal Abizar, Galvin Efrem Lesmana, Hanif Abdul Aziz
 -- NOTE 19/11/2026: Cara kerja program terverifikasi dan sudah diuji benar oleh MultiSim
 
@@ -36,12 +36,12 @@ entity Subcomp_Mux128_2 is port (
 ); end entity Subcomp_Mux128_2;
 
 architecture RTL of Subcomp_Mux128_2 is
+	signal C : std_logic_vector (127 downto 0);
 begin
-	process (SEL) begin
-		if SEL = '1' then
-			Q <= D1;
-		elsif SEL = '0' then
-			Q <= D0;
+	process (D0, D1, C, SEL) begin
+		if SEL = '0' then C <= D0;
+		elsif SEL = '1' then C <= D1;
 		end if;
 	end process;
+	Q <= C;
 end architecture RTL;

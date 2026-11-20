@@ -1,4 +1,4 @@
--- AES128 MultGF28 implementation (version 0.2)
+-- AES128 MultGF28 implementation (version 0.3)
 -- Copyright (c) 2026 Muhammad Kemal Abizar, Galvin Efrem Lesmana, Hanif Abdul Aziz
 -- NOTE 19/11/2026: Cara kerja program terverifikasi dan sudah diuji benar oleh MultiSim
 
@@ -38,7 +38,7 @@ architecture RTL of AES128_MultGF28 is
 	signal D : std_logic_vector (7 downto 0);
 begin
 	C <= std_logic_vector (unsigned(X) sll 1);
-	process (C) begin
+	process begin
 		if X(7) = '1' then D <= C xor "00011011";
 		elsif X(7) = '0' then D <= C;
 		end if;
