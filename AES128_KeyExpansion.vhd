@@ -1,6 +1,6 @@
 library IEEE;
-use IEEE.std_logic_1164.ALL;
-use IEEE.numeric_std.ALL;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
 
 entity AES128_KeyExpansion is port (
         keyIn		: in std_logic_vector (127 downto 0);
