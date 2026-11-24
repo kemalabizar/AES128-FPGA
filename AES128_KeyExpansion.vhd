@@ -35,7 +35,18 @@ begin
 
 
 	-- RCon
-
+	with roundnum select Rcon <=
+		x"01" when "0001",
+		x"02" when "0010",
+		x"04" when "0011",
+		x"08" when "0100",
+		x"10" when "0101",
+		x"20" when "0110",
+		x"40" when "0111",
+		x"80" when "1000",
+		x"1B" when "1001",
+		x"36" when "1010",
+		x"00" when others;
 
 	-- Fungsi g
 	Temp <= SubWord xor (Rcon & x"000000");
