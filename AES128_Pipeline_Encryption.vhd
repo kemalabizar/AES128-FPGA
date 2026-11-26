@@ -53,9 +53,9 @@ architecture RTL of AES128_Pipeline_Encryption is
 	); end component AES128_MixColumns;
 	-- AddRoundKey module
 	component AES128_AddRoundKey is port (
-		stateIn : in std_logic_vector (127 downto 0);
-		roundKey : in std_logic_vector (127 downto 0);
-		stateOut : out std_logic_vector (127 downto 0)
+		P : in std_logic_vector (127 downto 0);
+		K : in std_logic_vector (127 downto 0);
+		C : out std_logic_vector (127 downto 0)
 	); end component AES128_AddRoundKey;
 	-- Subcomponent Multiplexer module
 	component Subcomp_Mux128_2 is port (
@@ -75,6 +75,6 @@ begin
 	Process_ShiftRows		: AES128_ShiftRows port map (X => A, Y => B);
 	Process_MixColumn		: AES128_MixColumns port map (X => B, Y => C);
 	Selector_LastRound	: Subcomp_Mux128_2 port map (D0 => C, D1 => B, Q => D, SEL => LastRound);
-	Process_AddRoundKey	: AES128_AddRoundKey port map (stateIn => D, roundKey => Kr, stateOut => S);
+	Process_AddRoundKey	: AES128_AddRoundKey port map (P => D, K => Kr, C => S);
 	Cr <= S;
 end architecture RTL;
