@@ -29,10 +29,13 @@ begin
 	W3 <= keyIn (31 downto 0);
 
 	-- RotWord
-	RotWord <= W3 (23 downto 0) & W3 (32 downto 24);
+	RotWord <= W3 (23 downto 0) & W3 (31 downto 24);
 
 	-- SubWord
-
+	sbox_b0 : AES128_SBox port map (X => RotWord (31 downto 24), Y => SubWord (31 downto 24));
+	sbox_b1 : AES128_SBox port map (X => RotWord (23 downto 16), Y => SubWord (23 downto 16));
+	sbox_b2 : AES128_SBox port map (X => RotWord (15 downto 8),  Y => SubWord (15 downto 8));
+	sbox_b3 : AES128_SBox port map (X => RotWord (7 downto 0),   Y => SubWord (7 downto 0));
 
 	-- RCon
 	with roundnum select Rcon <=
